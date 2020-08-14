@@ -22,10 +22,12 @@ jobs:
     # login to my docker hub with credentials
     - name: Docker login
       env:
-        DOCKER_USER:${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD:${{secrets.DOCKER_PASSWORD}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     # Runs a single command using the runners shell
     - name: Docker build
       run: docker build . -t backbencher007/esdownloadservice:0.0.1
+    - name : Docker push
+      run: docker push backbencher007/esdownloadservice:0.0.1
